@@ -4,6 +4,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import v1 from './api/v1';
+import mongoose from 'mongoose'
 
 const app = express();
 const PORT = Number(process.env.PORT);
@@ -34,3 +35,12 @@ app.use((err: any, req: Request, res: Response, _: NextFunction) => {
 });
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+
+const DB_URI = process.env.DB_URI as string;
+mongoose.connect(DB_URI, (err) => {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log('Database connected');
+  }
+});
