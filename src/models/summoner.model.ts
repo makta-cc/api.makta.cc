@@ -92,8 +92,7 @@ const summonerSchema: Schema = new Schema({
     schema: new Schema ({
       championId: {
         type: Number,
-        required: true,
-        unique: true
+        required: true
       },
       championLevel: {
         type: Number,
