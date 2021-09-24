@@ -57,7 +57,7 @@ export class MatchService {
 
   public static async findByPuuid(puuid: string) {
     console.log('find match');
-    const res = await Match.find({ puuid: puuid }).limit(10);
+    const res = await Match.find({ "metadata.participants": puuid }).limit(10);
     if (res.length < 1) {
       return this.findFromRiotApi(puuid);
     }
