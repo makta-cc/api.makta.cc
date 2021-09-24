@@ -52,7 +52,7 @@ export class SummonerService {
   public static async findByName(summonerName: string) {
     const res = await Summoner.findOne({ name: summonerName });
     if (res === null) {
-      const summoner = await this.findFromRiotApi(summonerName);
+      const summoner = await this.findFromRiotApi(encodeURIComponent(summonerName));
       const summonerDoc = new Summoner(summoner);
       summonerDoc.save();
       return summoner;

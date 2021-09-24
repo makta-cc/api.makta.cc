@@ -147,190 +147,207 @@ const matchSchema: Schema = new Schema({
     }]
   },
   info: {
-    gameCreation: {
-      type: Number,
-      required: true
-    },
-    gameDuration: {
-      type: Number,
-      required: true
-    },
-    gameId: {
-      type: Number,
-      required: true
-    },
-    gameMode: {
-      type: String,
-      required: true
-    },
-    participants: [{
-      summonerName: {
-        type: String,
-        required: true
-      },
-      teamPosition: {
-        type: String
-      },
-      championId: {
+    type: Object,
+    schema: new Schema({
+      gameCreation: {
         type: Number,
         required: true
       },
-      champLevel: {
-        type: Number
+      gameDuration: {
+        type: Number,
+        required: true
       },
-      goldEarned: {
-        type: Number
+      gameId: {
+        type: Number,
+        required: true
       },
-      item0: {
-        type: Number
+      gameMode: {
+        type: String,
+        required: true
       },
-      item1: {
-        type: Number
-      },
-      item2: {
-        type: Number
-      },
-      item3: {
-        type: Number
-      },
-      item4: {
-        type: Number
-      },
-      item5: {
-        type: Number
-      },
-      item6: {
-        type: Number
-      },
-      summoner1Id: {
-        type: Number
-      },
-      summoner2Id: {
-        type: Number
-      },
-      perks: {
-        statPerks: {
-          defense: {
-            type: Number
+      participants: {
+        type: Array,
+        schema: new Schema({
+          summonerName: {
+            type: String,
+            required: true
           },
-          flex: {
-            type: Number
-          },
-          offense: {
-            type: Number
-          },
-        },
-        styles: [{
-          description: {
+          teamPosition: {
             type: String
           },
-          selections: [{
-            perk: {
-              type: Number
+          championId: {
+            type: Number,
+            required: true
+          },
+          champLevel: {
+            type: Number
+          },
+          goldEarned: {
+            type: Number
+          },
+          item0: {
+            type: Number
+          },
+          item1: {
+            type: Number
+          },
+          item2: {
+            type: Number
+          },
+          item3: {
+            type: Number
+          },
+          item4: {
+            type: Number
+          },
+          item5: {
+            type: Number
+          },
+          item6: {
+            type: Number
+          },
+          summoner1Id: {
+            type: Number
+          },
+          summoner2Id: {
+            type: Number
+          },
+          perks: {
+            statPerks: {
+              defense: {
+                type: Number
+              },
+              flex: {
+                type: Number
+              },
+              offense: {
+                type: Number
+              },
             },
-            var1: {
-              type: Number
-            },
-            var2: {
-              type: Number
-            },
-            var3: {
-              type: Number
-            },
-            versionKey: false
-          }],
-          style: {
-            type: Number
-          },
-          versionKey: false
-        }]
-      },
-      kills: {
-        type: Number
-      },
-      deaths: {
-        type: Number
-      },
-      assists: {
-        type: Number
-      },
-      totalDamageDealtToChampions: {
-        type: Number
-      },
-      teamId: {
-        type: Number
-      },
-      versionKey: false
-    }],
-    teams: [{
-      bans: [{
-        championId: {
-          type: Number
-        },
-        pickTurn: {
-          type: Number
-        }
-      }],
-      objectives: {
-        baron: {
-          first: {
-            type: Boolean
+            styles: {
+              type: Array,
+              schema: new Schema({
+                description: {
+                  type: String
+                },
+                selections: {
+                  type: Array,
+                  schema: new Schema({
+                    perk: {
+                      type: Number
+                    },
+                    var1: {
+                      type: Number
+                    },
+                    var2: {
+                      type: Number
+                    },
+                    var3: {
+                      type: Number
+                    }
+                  }, {_id: false, versionKey: false})
+                },
+                style: {
+                  type: Number
+                }
+              }, {_id: false, versionKey: false})
+            }
           },
           kills: {
             type: Number
           },
-        },
-        champion: {
-          first: {
-            type: Boolean
+          deaths: {
+            type: Number
           },
-          kills: {
+          assists: {
+            type: Number
+          },
+          totalDamageDealtToChampions: {
+            type: Number
+          },
+          teamId: {
             type: Number
           }
-        },
-        dragon: {
-          first: {
-            type: Boolean
-          },
-          kills: {
-            type: Number
-          }
-        },
-        inhibitor: {
-          first: {
-            type: Boolean
-          },
-          kills: {
-            type: Number
-          }
-        },
-        riftHerald: {
-          first: {
-            type: Boolean
-          },
-          kills: {
-            type: Number
-          }
-        },
-        tower: {
-          first: {
-            type: Boolean
-          },
-          kills: {
-            type: Number
-          }
-        },
+        }, {_id: false, versionKey: false})
       },
-      teamId: {
-        type: Number
-      },
-      win: {
-        type: Boolean
-      },
-      versionKey: false
-    }]
+      teams: {
+        type: Array,
+        schema: new Schema({
+          bans: {
+            type: Array,
+            schema: new Schema({
+              championId: {
+                type: Number
+              },
+              pickTurn: {
+                type: Number
+              }
+            }, {_id: false, versionKey: false})
+          },
+          objectives: {
+            type: Object,
+            schema: new Schema({
+              baron: {
+                first: {
+                  type: Boolean
+                },
+                kills: {
+                  type: Number
+                },
+              },
+              champion: {
+                first: {
+                  type: Boolean
+                },
+                kills: {
+                  type: Number
+                }
+              },
+              dragon: {
+                first: {
+                  type: Boolean
+                },
+                kills: {
+                  type: Number
+                }
+              },
+              inhibitor: {
+                first: {
+                  type: Boolean
+                },
+                kills: {
+                  type: Number
+                }
+              },
+              riftHerald: {
+                first: {
+                  type: Boolean
+                },
+                kills: {
+                  type: Number
+                }
+              },
+              tower: {
+                first: {
+                  type: Boolean
+                },
+                kills: {
+                  type: Number
+                }
+              }
+            }, {_id: false, versionKey: false})
+          },
+          teamId: {
+            type: Number
+          },
+          win: {
+            type: Boolean
+          }
+        }, {_id: false, versionKey: false})
+      }
+    }, {_id: false, versionKey: false})
   }
-}, { versionKey: false });
+});
 
 const Match = model('match', matchSchema);
 export { Match, MatchDetail, MatchSimple };

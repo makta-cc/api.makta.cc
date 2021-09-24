@@ -58,47 +58,53 @@ const summonerSchema: Schema = new Schema({
     type: Number,
     required: true
   },
-  rank: [{
-    leagueId: {
-      type: String,
-      required: true
-    },
-    queueType: {
-      type: String,
-      required: true
-    },
-    tier: {
-      type: String,
-      required: true
-    },
-    rank: {
-      type: String
-    },
-    leaguePoints: {
-      type: Number
-    },
-    wins: {
-      type: Number
-    },
-    losses: {
-      type: Number
-    }
-  }],
-  mastery: [{
-    championId: {
-      type: Number,
-      required: true,
-      unique: true
-    },
-    championLevel: {
-      type: Number,
-      required: true
-    },
-    championPoints: {
-      type: Number,
-      required: true
-    }
-  }]
+  rank: {
+    type: Array,
+    schema: new Schema ({
+      leagueId: {
+        type: String,
+        required: true
+      },
+      queueType: {
+        type: String,
+        required: true
+      },
+      tier: {
+        type: String,
+        required: true
+      },
+      rank: {
+        type: String
+      },
+      leaguePoints: {
+        type: Number
+      },
+      wins: {
+        type: Number
+      },
+      losses: {
+        type: Number
+      }
+    }, { _id: false, versionKey: false })
+  },
+  mastery: {
+    type: Array,
+    schema: new Schema ({
+      championId: {
+        type: Number,
+        required: true,
+        unique: true
+      },
+      championLevel: {
+        type: Number,
+        required: true
+      },
+      championPoints: {
+        type: Number,
+        required: true
+      }
+    }, { _id: false, versionKey: false })
+  }
 }, { versionKey: false });
 
 const Summoner = model('Summoner', summonerSchema);
