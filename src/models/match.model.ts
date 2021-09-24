@@ -140,7 +140,8 @@ const matchSchema: Schema = new Schema({
     },
     matchId: {
       type: String,
-      required: true
+      required: true,
+      unique: true
     },
     participants: [{
       type: String
